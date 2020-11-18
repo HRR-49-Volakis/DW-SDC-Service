@@ -1,0 +1,16 @@
+    axios.get(port +'product', {
+      headers: {
+      name:name
+      }
+    }).then(function(data) {
+      console.log(data);
+    })
+
+{data: Array(1), status: 200, statusText: "OK", headers: {…}, config: {…}, …}
+config: {url: "http://localhost:3000/product", method: "get", headers: {…}, transformRequest: Array(1), transformResponse: Array(1), …}
+data: [{…}]
+headers: {connection: "keep-alive", content-length: "153", content-type: "application/json; charset=utf-8", date: "Fri, 13 Nov 2020 20:24:37 GMT", etag: "W/"99-IWo1/9gpHUFW1OAux3s8iIODFb8"", …}
+request: XMLHttpRequest {readyState: 4, timeout: 0, withCredentials: false, upload: XMLHttpRequestUpload, onreadystatechange: ƒ, …}
+status: 200
+statusText: "OK"
+__proto__: Object
