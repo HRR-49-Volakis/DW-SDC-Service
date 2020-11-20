@@ -3,8 +3,17 @@ const mysql = require('./database/mysql');
 let app = express();
 app.use(express.static('client/dist'));
 
+app.get('/store', function(req, res) {
+  mysql.getStore(req.headers.zip, function(err, data) {
+    if (err) {
+      console.log(err);
+    } else {
+      res.send(data);
+    }
+  });
+});
 app.get('/stores', function(req, res) {
-  mysql.getStore(req.headers.name, function(err, data) {
+  mysql.getStores(function(err, data) {
     if (err) {
       console.log(err);
     } else {
@@ -13,7 +22,7 @@ app.get('/stores', function(req, res) {
   });
 });
 app.get('/product', function(req, res) {
-  mysql.getProduct(req.headers.name, function(err, data) {
+  mysql.getProduct(req.headers.id, function(err, data) {
     if (err) {
       console.log(err);
     } else {

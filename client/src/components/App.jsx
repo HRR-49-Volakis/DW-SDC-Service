@@ -13,13 +13,32 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      product:{},
+      stores:[],
     };
+    this.getProduct();
+    this.getStores();
   }
   getProduct() {
-    var name = 'Fish';
+    var id = '3';
+    var self = this;
     axios.get(port + 'product', {
       headers: {
-        name: name
+        id: id
+      }
+    }).then(function(data) {
+      console.log(data.data[0]);
+      self.setState({product: data.data[0]});
+    }).catch(function(err) {
+      console.log(err);
+    });
+    this.setState({product: self});
+  }
+  getStore() {
+    var zip = '11211';
+    axios.get(port + 'store', {
+      headers: {
+        zip: zip
       }
     }).then(function(data) {
       console.log(data);
@@ -27,25 +46,28 @@ class App extends React.Component {
       console.log(err);
     });
   }
-  getStore() {
-    var name = 'Avon';
-    axios.get(port + 'stores', {
-      headers: {
-        name: name
-      }
-    }).then(function(data) {
+  getStores() {
+    self=this;
+    axios.get(port + 'stores')
+    .then(function(data) {
       console.log(data);
+      self.setState({stores: data.data});
     }).catch(function(err) {
       console.log(err);
     });
   }
   render() {
     return (
-      <div className={'menu'}>
-        <AddToBag/>
-        hello
+      <div>
+        <div className={'menu'}>
+          <Product data={this.state.product}/>
+          <AddToBag/>
+          <Stock stores={this.state.stores}/>
+        </div>
       </div>
     );
-  }
 }
+}
+// <div className={"backdrop"}></div>
+//<div className = {'drawer open'}>Hello</div>
 export default App;

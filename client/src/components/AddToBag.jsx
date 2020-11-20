@@ -9,7 +9,10 @@ class AddToBag extends React.Component {
   }
   render() {
     return (
-      <h1 className= {'product_title'}>hello</h1>
+      <div className ={"addToBag box"}>
+      <div className= {'addToBag button'}>Add To Bag</div>
+      <div className= {'addToBag heart'}>heart</div>
+      </div>
     );
   }
 }
