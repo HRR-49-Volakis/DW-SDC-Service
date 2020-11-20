@@ -7,6 +7,7 @@ CREATE TABLE Products (
   name varchar(144),
   description varchar(144),
   price int,
+  review int,
   PRIMARY KEY(ID)
 );
 

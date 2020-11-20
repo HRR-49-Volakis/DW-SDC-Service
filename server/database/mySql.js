@@ -12,8 +12,8 @@ connection.connect(function(err) {
   }
   console.log('connected');
 });
-var getProduct = function (name, callback) {
-  connection.query("SELECT description, price FROM Products WHERE name='" + name + "' LIMIT 1;", function(err, data) {
+var getProduct = function (id, callback) {
+  connection.query("SELECT name, description, price FROM Products WHERE id='" + id + "' LIMIT 1;", function(err, data) {
     callback(err,data);
   });
 };
@@ -23,13 +23,13 @@ var getProducts = function (name, callback) {
   });
 };
 var getStore = function (name, callback) {
-  connection.query("SELECT address, zipcode FROM Stores WHERE name='"+ name + "' LIMIT 1;", function(err, data) {
-    console.log(data);
+  connection.query("SELECT name, address, zipcode, stock FROM Stores WHERE zipcode='"+ zip + "';", function(err, data) {
+    callback(err,data);
   });
 };
-var getStores = function (name, callback) {
-  connection.query("SELECT * FROM Stores;", function(err, data) {
-    callback(data);
+var getStores = function (callback) {
+  connection.query("SELECT * FROM Stores LIMIT 10;", function(err, data) {
+    callback(err, data);
   });
 };
 var addProduct = async function (name, description, price) {
@@ -48,5 +48,6 @@ var addStore = async function (name, address, zipcode) {
 
 module.exports.getProduct = getProduct;
 module.exports.getStore = getStore;
+module.exports.getStores = getStores;
 module.exports.addProduct = addProduct;
 module.exports.addStore = addStore;
