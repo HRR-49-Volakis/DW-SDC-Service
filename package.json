@@ -5,10 +5,10 @@
   "main": ".eslintrc.js",
   "scripts": {
     "seed": "node server/seed.js",
-    "react-dev": "webpack --watch",
+    "react-dev": "webpack",
     "server-dev": "node server/index.js",
     "test": "jest",
-    "build": "webpack"
+    "build": "webpack --config webpack.config.js"
   },
   "dependencies": {
     "axios": "^0.19.2",
