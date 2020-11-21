@@ -5,7 +5,7 @@ class Stock extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      drawer: 'drawer open'
+      drawer: 'drawer'
     };
     this.closeTab = this.closeTab.bind(this);
     this.openTab = this.openTab.bind(this);

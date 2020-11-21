@@ -8,7 +8,7 @@ import Reviews from './Reviews.jsx';
 import '../styles/App.css';
 //import '../App.css';
 //const styles = require('../App.css').toString();
-const port = '/';
+const port = '/api/Bag/';
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -20,7 +20,7 @@ class App extends React.Component {
     this.getStores();
   }
   getProduct() {
-    var id = '3';
+    var id = '1';
     var self = this;
     axios.get(port + 'product', {
       headers: {
