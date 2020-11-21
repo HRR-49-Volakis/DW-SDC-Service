@@ -6,9 +6,9 @@
   "scripts": {
     "seed": "node server/seed.js",
     "react-dev": "webpack --watch",
-    "server-dev": "nodemon server/index.js",
+    "server-dev": "node server/index.js",
     "test": "jest",
-    "build": "webpack --config webpack.config.js"
+    "build": "webpack"
   },
   "dependencies": {
     "axios": "^0.19.2",
