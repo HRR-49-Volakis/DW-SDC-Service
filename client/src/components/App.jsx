@@ -8,7 +8,7 @@ import Reviews from './Reviews.jsx';
 import '../styles/App.css';
 //import '../App.css';
 //const styles = require('../App.css').toString();
-const port = 'http://localhost:3000/';
+const port = '/';
 class App extends React.Component {
   constructor(props) {
     super(props);

@@ -1,5 +1,5 @@
 const express = require('express');
-const mysql = require('./database/mysql');
+const mysql = require('./database/mySql.js');
 let app = express();
 app.use(express.static('client/dist'));
 
@@ -31,7 +31,7 @@ app.get('/product', function(req, res) {
   });
 });
 
-let port = 3000;
+let port = 3001;
 app.listen(port, function() {
   console.log('listening');
 });
