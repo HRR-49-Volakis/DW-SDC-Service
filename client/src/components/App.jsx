@@ -58,13 +58,11 @@ class App extends React.Component {
   }
   render() {
     return (
-      <div>
         <div className={'menu'}>
           <Product data={this.state.product}/>
           <AddToBag product={this.state.product}/>
           <Stock stores={this.state.stores} product={this.state.product}/>
         </div>
-      </div>
     );
 }
 }
