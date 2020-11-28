@@ -5,14 +5,18 @@ class StocksList extends React.Component {
     super(props);
     this.state = {
     };
+    this.select = this.select.bind(this);
+  }
+  select () {
+    console.log(this.props.store);
+    this.props.clicked(this.props.store);
   }
   render() {
     return (
-      <div>
-        {this.props.store.name}
-        {this.props.store.zipcode}
-        {this.props.store.address}
-        {this.props.store.stock}
+      <div onClick={this.select} className={'stock list item'}>
+        <div className={'stock individual info title'}>{this.props.store.name}</div>
+        <div className={'stock individual description'}>{this.props.store.address}, {this.props.store.zipcode}</div>
+        <div className={'stock individual description'}>Available Stock, {this.props.store.stock}</div>
       </div>
     );
   }

@@ -20,7 +20,7 @@ class App extends React.Component {
     this.getStores();
   }
   getProduct() {
-    var id = '1';
+    var id = '8';
     var self = this;
     axios.get(port + 'product', {
       headers: {
@@ -61,8 +61,8 @@ class App extends React.Component {
       <div>
         <div className={'menu'}>
           <Product data={this.state.product}/>
-          <AddToBag/>
-          <Stock stores={this.state.stores}/>
+          <AddToBag product={this.state.product}/>
+          <Stock stores={this.state.stores} product={this.state.product}/>
         </div>
       </div>
     );

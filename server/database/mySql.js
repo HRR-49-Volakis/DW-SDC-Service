@@ -13,7 +13,7 @@ connection.connect(function(err) {
   console.log('connected');
 });
 var getProduct = function (id, callback) {
-  connection.query("SELECT name, description, price FROM Products WHERE id='" + id + "' LIMIT 1;", function(err, data) {
+  connection.query("SELECT name, description, price, review FROM Products WHERE id='" + id + "' LIMIT 1;", function(err, data) {
     callback(err,data);
   });
 };

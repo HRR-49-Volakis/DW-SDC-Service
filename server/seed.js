@@ -22,6 +22,7 @@ function seed () {
     data.name = faker.commerce.product();
     data.description = faker.commerce.productAdjective();
     data.price = faker.commerce.price();
+    data.review = faker.random.number();
     connection.query('INSERT INTO Products SET ?', data, function(err,data) {
       console.log(data);
     });
@@ -29,7 +30,7 @@ function seed () {
     data2.name = faker.address.county();
     data2.address = faker.address.streetAddress();
     data2.zipcode = faker.address.zipCode();
-    data.stock= faker.random.number();
+    data2.stock= faker.random.number();
     connection.query('INSERT INTO Stores SET ?', data2, function (err, data) {
       console.log(data);
     });
