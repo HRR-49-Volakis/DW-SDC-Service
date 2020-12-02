@@ -17,7 +17,22 @@
 
 ## Usage
 
-> Some usage instructions
+> instantiate DB: from root, run mysql -u root < server/database/schema.sql (it may be necessary to edit connection settings in mySql.js)
+
+> Seed DB with sample data: from root, npm run seed (it may be necessary to edit connection settings in this file as well)
+
+> API:
+
+//create
+addProduct(name, description, price)
+addStore(name, address, zipcode)
+
+//read
+getProduct(id, callback)
+getProducts(name, callback)
+getStore(name, callback)
+getStores(callback)
+
 
 ## Requirements
 
