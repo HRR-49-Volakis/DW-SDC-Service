@@ -12,6 +12,23 @@ connection.connect(function(err) {
   }
   console.log('connected');
 });
+
+//create
+var addProduct = async function (name, description, price) {
+  console.log(name);
+  var data = {name: name, description: description, price: price};
+  connection.query('INSERT INTO Products SET ?', data, function(err,data) {
+    console.log(data);
+  });
+}
+var addStore = async function (name, address, zipcode) {
+  var data = {name: name, address: address, zipcode: zipcode};
+  connection.query('INSERT INTO Stores SET ?', data, function (err, data) {
+    console.log(data);
+  });
+}
+
+//read
 var getProduct = function (id, callback) {
   connection.query("SELECT name, description, price, review FROM Products WHERE id='" + id + "' LIMIT 1;", function(err, data) {
     callback(err,data);
@@ -32,22 +49,40 @@ var getStores = function (callback) {
     callback(err, data);
   });
 };
-var addProduct = async function (name, description, price) {
-  console.log(name);
-  var data = {name: name, description: description, price: price};
-  connection.query('INSERT INTO Products SET ?', data, function(err,data) {
-    console.log(data);
+
+//update
+const updateProduct = (id, property, newVal, callback) => {
+  connection.query(`UPDATE Products SET ${property} = ${newVal} WHERE id = ${id}`, (err, data) => {
+    callback(err, data);
   });
 }
-var addStore = async function (name, address, zipcode) {
-  var data = {name: name, address: address, zipcode: zipcode};
-  connection.query('INSERT INTO Stores SET ?', data, function (err, data) {
-    console.log(data);
+
+const updateStore = (id, property, newVal, callback) => {
+  connection.query(`UPDATE Stores SET ${property} = ${newVal} WHERE id = ${id}`, (err, data) => {
+    callback(err, data);
   });
 }
+
+//delete
+const deleteProduct = (id, callback) => {
+  connection.query(`DELETE FROM Products WHERE id = ${id}`, (err, data) => {
+    callback(err, data);
+  });
+}
+
+const deleteStore = (id, callback) => {
+  connection.query(`DELETE FROM Stores WHERE id = ${id}`, (err, data) => {
+    callback(err, data);
+  });
+}
+
 
 module.exports.getProduct = getProduct;
 module.exports.getStore = getStore;
 module.exports.getStores = getStores;
 module.exports.addProduct = addProduct;
 module.exports.addStore = addStore;
+module.exports.updateProduct = updateProduct;
+module.exports.updateStore = updateStore;
+module.exports.deleteProduct = deleteProduct;
+module.exports.deleteStore = deleteStore;
