@@ -24,32 +24,32 @@
 > API:
 
 1. //create
-addProduct(name, description, price)
-  -- generates one product object from arguments and inserts into Product Table
-addStore(name, address, zipcode)
-  -- generates one store object from arguments and inserts into Product Table
+>addProduct(name, description, price)
+>  -- generates one product object from arguments and inserts into Product Table
+>addStore(name, address, zipcode)
+>  -- generates one store object from arguments and inserts into Product Table
 
 2. //read
-getProduct(id, callback)
-  -- retrieves one product based on id and passes response object to callback function
-getProducts(name, callback)
-  -- retrieves all products from Products table and passes an array of response objects to callback function
-getStore(name, callback)
-  -- retrieves one product based on id and passes response object to callback function
-getStores(callback)
-  -- retrieves 10 stores from Stores table and passes an array of response objects to callback function
+>getProduct(id, callback)
+>  -- retrieves one product based on id and passes response object to callback function
+>getProducts(name, callback)
+>  -- retrieves all products from Products table and passes an array of response objects to callback function
+>getStore(name, callback)
+>  -- retrieves one product based on id and passes response object to callback function
+>getStores(callback)
+>  -- retrieves 10 stores from Stores table and passes an array of response objects to callback function
 
 3. //update
-updateProduct(id, property, newVal)
-  -- updates product, sets property to newValue for product with provided ID.
-updateStore(id, property, newVal)
-  -- updates store, sets property to newValue for store with provided ID.
+>updateProduct(id, property, newVal)
+>  -- updates product, sets property to newValue for product with provided ID.
+>updateStore(id, property, newVal)
+>  -- updates store, sets property to newValue for store with provided ID.
 
 4. //delete
-deleteProduct(id)
-  --deletes product with target id from products table
-deleteStore(id)
-  --deletes store with target id from store table
+>deleteProduct(id)
+>  --deletes product with target id from products table
+>deleteStore(id)
+>  --deletes store with target id from store table
 
 ## Requirements
 
