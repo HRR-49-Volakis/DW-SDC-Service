@@ -17,17 +17,21 @@
 
 ## Usage
 
-> instantiate DB: from root, run mysql -u root < server/database/schema.sql (it may be necessary to edit connection settings in mySql.js)
+> instantiate DB:
+>mySQL: from root, run mysql -u root < server/database/schema.sql (it may be necessary to edit connection settings in mySql.js)
+
+Postgres: from within shell:
+> \i /Users/dw/SDC/Add-To-Bag-Frans/server/database/schema.sql
 
 > Seed DB with sample data: from root, npm run seed (it may be necessary to edit connection settings in this file as well)
 
 > API:
 
 1. //create
->addProduct(name, description, price)
+>addProduct(name, description, price, review, callback)
 >  -- generates one product object from arguments and inserts into Product Table
 
->addStore(name, address, zipcode)
+>addStore(name, address, zipcode, stock, callback)
 >  -- generates one store object from arguments and inserts into Product Table
 
 2. //read

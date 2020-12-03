@@ -76,12 +76,11 @@ const deleteStore = (id, callback) => {
   });
 }
 
-
+module.exports.addProduct = addProduct;
+module.exports.addStore = addStore;
 module.exports.getProduct = getProduct;
 module.exports.getStore = getStore;
 module.exports.getStores = getStores;
-module.exports.addProduct = addProduct;
-module.exports.addStore = addStore;
 module.exports.updateProduct = updateProduct;
 module.exports.updateStore = updateStore;
 module.exports.deleteProduct = deleteProduct;

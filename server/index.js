@@ -1,20 +1,23 @@
 const express = require('express');
-const mysql = require('./database/mySql.js');
+// const mysql = require('./database/mySql.js');
+const postgres = require('./database/pgIndex.js');
 let app = express();
 app.use(express.static('client/dist'));
 
 //create
-
 app.post('/api/Bag/product', (req, res) => {
   let name = req.headers.name;
   let description = req.headers.description;
   let price = req.headers.price;
-  mysql.addProduct(name, description, price, (err, data) => {
+  let review = req.headers.review;
+  console.log('created new product')
+  postgres.addProduct(name, description, price, review, (err, data) => {
     if (err) {
       console.log(err);
+      res.status(404).end();
     } else {
       console.log('product added', data);
-      res.send(data);
+      res.status(200).json(data.rows);
     }
   });
 });
@@ -22,42 +25,63 @@ app.post('/api/Bag/store', (req, res) => {
   let name = req.headers.name;
   let address = req.headers.address;
   let zip = req.headers.zip;
-
-  mysql.addStore(name, address, zip, (err, data) => {
+  let stock = req.headers.stock;
+  postgres.addStore(name, address, zip, stock, (err, data) => {
     if (err) {
       console.log(err);
+      res.status(404).end();
     } else {
       console.log('store added', data);
-      res.send(data);
+      res.status(200).json(data.rows);
     }
   });
 });
 
 //read
 app.get('/api/Bag/store', function(req, res) {
-  mysql.getStore(req.headers.zip, function(err, data) {
+  console.log('GET for one store')
+  postgres.getStore(req.headers.zip, function(err, data) {
     if (err) {
       console.log(err);
+      res.status(404).end();
     } else {
-      res.send(data);
+      res.status(200).json(data.rows);
     }
   });
 });
+
 app.get('/api/Bag/stores', function(req, res) {
-  mysql.getStores(function(err, data) {
+  console.log('GET for all stores')
+  postgres.getStores(function(err, data) {
     if (err) {
       console.log(err);
+      res.status(404).end();
     } else {
-      res.send(data);
+      res.status(200).json(data.rows);
     }
   });
 });
+
 app.get('/api/Bag/product', function(req, res) {
-  mysql.getProduct(req.headers.id, function(err, data) {
+  console.log('GET for product')
+  postgres.getProduct(req.headers.id, function(err, data) {
     if (err) {
       console.log(err);
+      res.status(404).end();
     } else {
-      res.send(data);
+      res.status(200).json(data.rows);
+    }
+  });
+});
+
+app.get('/api/Bag/products', function(req, res) {
+  console.log('GET for all products')
+  postgres.getProducts(function(err, data) {
+    if (err) {
+      console.log(err);
+      res.status(404).end();
+    } else {
+      res.status(200).json(data.rows);
     }
   });
 });
@@ -66,28 +90,29 @@ app.get('/api/Bag/product', function(req, res) {
 app.put('/api/Bag/product', (req, res) => {
   let id = req.headers.id;
   let property = req.headers.property;
-  let newVal = req.headers.newVal;
-
-  mysql.updateProduct(id, property, newVal, (err, data) => {
+  let newVal = req.headers.newval;
+  console.log(req.headers);
+  postgres.updateProduct(id, property, newVal, (err, data) => {
     if (err) {
       console.log(err);
+      res.status(404).end();
     } else {
       console.log('product updated', data);
-      res.send(data);
+      res.status(200).json(data.rows);
     }
   });
 });
 app.put('/api/Bag/store', (req, res) => {
   let id = req.headers.id;
   let property = req.headers.property;
-  let newVal = req.headers.newVal;
-
-  mysql.updateStore(id, property, newVal, (err, data) => {
+  let newVal = req.headers.newval;
+  postgres.updateStore(id, property, newVal, (err, data) => {
     if (err) {
       console.log(err);
+      res.status(404).end();
     } else {
       console.log('store updated', data);
-      res.send(data);
+      res.status(200).json(data.rows);
     }
   });
 });
@@ -95,25 +120,25 @@ app.put('/api/Bag/store', (req, res) => {
 //delete
 app.delete('/api/Bag/product', (req, res) => {
   let id = req.headers.id;
-  mysql.deleteProduct(id, (err, data) => {
+  postgres.deleteProduct(id, (err, data) => {
     if (err) {
       console.log(err);
+      res.status(404).end();
     } else {
-      console.log('product deleted', data);
-      res.send(data);
+      console.log('product deleted');
+      res.status(200).json(data.rows);
     }
   });
 });
-
-
 app.delete('/api/Bag/store', (req, res) => {
   let id = req.headers.id;
-  mysql.deleteStore(id, (err, data) => {
+  postgres.deleteStore(id, (err, data) => {
     if (err) {
       console.log(err);
+      res.status(404).end();
     } else {
-      console.log('store deleted', data);
-      res.send(data);
+      console.log('store deleted');
+      res.status(200).json(data.rows);
     }
   });
 });

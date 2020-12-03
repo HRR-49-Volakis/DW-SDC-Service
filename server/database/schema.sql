@@ -3,7 +3,7 @@ CREATE DATABASE IKEA;
 USE IKEA;
 
 CREATE TABLE Products (
-  id int NOT NULL AUTO_INCREMENT,
+  id int NOT NULL GENERATED ALWAYS AS IDENTITY,
   name varchar(144),
   description varchar(144),
   price int,
@@ -12,7 +12,7 @@ CREATE TABLE Products (
 );
 
 CREATE TABLE Stores (
-  id int NOT NULL AUTO_INCREMENT,
+  id int NOT NULL GENERATED ALWAYS AS IDENTITY,
   name varchar(144),
   address varchar(144),
   zipcode int,
@@ -21,7 +21,7 @@ CREATE TABLE Stores (
 );
 
 CREATE TABLE Inventory (
-  id int NOT NULL AUTO_INCREMENT,
+  id int NOT NULL GENERATED ALWAYS AS IDENTITY,
   stock int,
   StoresID int,
   ProductID int,
