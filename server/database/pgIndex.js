@@ -11,6 +11,7 @@ const client = new Client({
 });
 
 client.connect();
+console.log('successful connection to postgres DB');
 
 //create
 var addProduct = async function (name, description, price, review, callback) {
@@ -19,7 +20,7 @@ var addProduct = async function (name, description, price, review, callback) {
   });
 }
 var addStore = async function (name, address, zipcode, stock, callback) {
-  await pool.query(`INSERT INTO Stores (name, address, zipcode, stock) VALUES ('${name}', '${address}', ${zipcode}, ${stock})`, function(err,data) {
+  await pool.query(`INSERT INTO Stores (name, address, zipcode, stock) VALUES ('${name}', $$${address}$$, ${zipcode}, ${stock})`, function(err,data) {
     callback(err,data);
   });
 }

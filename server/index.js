@@ -1,5 +1,4 @@
 const express = require('express');
-// const mysql = require('./database/mySql.js');
 const postgres = require('./database/pgIndex.js');
 let app = express();
 app.use(express.static('client/dist'));

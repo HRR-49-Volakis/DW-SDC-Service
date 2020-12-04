@@ -8,7 +8,8 @@
     "react-dev": "webpack",
     "server-dev": "node server/index.js",
     "test": "jest",
-    "build": "webpack --config webpack.config.js"
+    "build": "webpack --config webpack.config.js",
+    "genPG": "node --max-old-space-size=4096 server/pgLoader.js"
   },
   "dependencies": {
     "axios": "^0.19.2",
