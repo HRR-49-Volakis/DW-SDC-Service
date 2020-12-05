@@ -23,6 +23,7 @@ const seedProducts = new Promise( (resolve, reject) => {
         console.log(err)
       }
     });
+    // products.shift()
   }
   resolve();
 });
@@ -38,6 +39,7 @@ const seedStores = new Promise( (resolve, reject) => {
         console.log(err)
       }
     });
+    // products.shift()
   }
   resolve();
 });

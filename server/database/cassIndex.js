@@ -18,10 +18,7 @@ const addProduct = async function (name, description, price, review, callback) {
 }
 
 var addStore = async function (name, address, zipcode, stock, callback) {
-  console.log(typeof zipcode)
   zipcode = Number.parseInt(zipcode.slice(0,5));
-  console.log(zipcode);
-
   let query = `INSERT INTO Stores (id, name, address, zipcode, stock) VALUES (toUnixTimestamp(now()), '${name}', $$${address}$$, ${zipcode}, ${stock})`;
   client.execute(query, function(err,data) {
     callback(err,data);
