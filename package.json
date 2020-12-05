@@ -9,11 +9,13 @@
     "server-dev": "node server/index.js",
     "test": "jest",
     "build": "webpack --config webpack.config.js",
-    "genPG": "node --max-old-space-size=4096 server/pgLoader.js"
+    "genPG": "node --max-old-space-size=4096 server/pgLoader.js",
+    "genCassie": "node --max-old-space-size=4096 server/cassieLoader.js"
   },
   "dependencies": {
     "axios": "^0.19.2",
     "body-parser": "^1.17.0",
+    "cassandra-driver": "^4.6.1",
     "dotenv": "^8.2.0",
     "express": "^4.15.0",
     "faker": "^5.1.0",

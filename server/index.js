@@ -1,5 +1,6 @@
 const express = require('express');
 const postgres = require('./database/pgIndex.js');
+const cassie = require('./database/cassIndex.js');
 let app = express();
 app.use(express.static('client/dist'));
 
@@ -10,7 +11,7 @@ app.post('/api/Bag/product', (req, res) => {
   let price = req.headers.price;
   let review = req.headers.review;
   console.log('created new product')
-  postgres.addProduct(name, description, price, review, (err, data) => {
+  cassie.addProduct(name, description, price, review, (err, data) => {
     if (err) {
       console.log(err);
       res.status(404).end();
@@ -23,9 +24,9 @@ app.post('/api/Bag/product', (req, res) => {
 app.post('/api/Bag/store', (req, res) => {
   let name = req.headers.name;
   let address = req.headers.address;
-  let zip = req.headers.zip;
+  let zip = Number.parseInt(req.headers.zip);
   let stock = req.headers.stock;
-  postgres.addStore(name, address, zip, stock, (err, data) => {
+  cassie.addStore(name, address, zip, stock, (err, data) => {
     if (err) {
       console.log(err);
       res.status(404).end();
@@ -37,33 +38,9 @@ app.post('/api/Bag/store', (req, res) => {
 });
 
 //read
-app.get('/api/Bag/store', function(req, res) {
-  console.log('GET for one store')
-  postgres.getStore(req.headers.zip, function(err, data) {
-    if (err) {
-      console.log(err);
-      res.status(404).end();
-    } else {
-      res.status(200).json(data.rows);
-    }
-  });
-});
-
-app.get('/api/Bag/stores', function(req, res) {
-  console.log('GET for all stores')
-  postgres.getStores(function(err, data) {
-    if (err) {
-      console.log(err);
-      res.status(404).end();
-    } else {
-      res.status(200).json(data.rows);
-    }
-  });
-});
-
 app.get('/api/Bag/product', function(req, res) {
   console.log('GET for product')
-  postgres.getProduct(req.headers.id, function(err, data) {
+  cassie.getProduct(req.headers.name, function(err, data) {
     if (err) {
       console.log(err);
       res.status(404).end();
@@ -75,7 +52,31 @@ app.get('/api/Bag/product', function(req, res) {
 
 app.get('/api/Bag/products', function(req, res) {
   console.log('GET for all products')
-  postgres.getProducts(function(err, data) {
+  cassie.getProducts(function(err, data) {
+    if (err) {
+      console.log(err);
+      res.status(404).end();
+    } else {
+      res.status(200).json(data.rows);
+    }
+  });
+});
+
+app.get('/api/Bag/store', function(req, res) {
+  console.log('GET for one store')
+  cassie.getStore(req.headers.zip, function(err, data) {
+    if (err) {
+      console.log(err);
+      res.status(404).end();
+    } else {
+      res.status(200).json(data.rows);
+    }
+  });
+});
+
+app.get('/api/Bag/stores', function(req, res) {
+  console.log('GET for all stores')
+  cassie.getStores(function(err, data) {
     if (err) {
       console.log(err);
       res.status(404).end();
@@ -88,10 +89,11 @@ app.get('/api/Bag/products', function(req, res) {
 //update
 app.put('/api/Bag/product', (req, res) => {
   let id = req.headers.id;
+  let name = req.headers.name;
   let property = req.headers.property;
   let newVal = req.headers.newval;
   console.log(req.headers);
-  postgres.updateProduct(id, property, newVal, (err, data) => {
+  cassie.updateProduct(id, name, property, newVal, (err, data) => {
     if (err) {
       console.log(err);
       res.status(404).end();
@@ -105,7 +107,8 @@ app.put('/api/Bag/store', (req, res) => {
   let id = req.headers.id;
   let property = req.headers.property;
   let newVal = req.headers.newval;
-  postgres.updateStore(id, property, newVal, (err, data) => {
+  let zip = req.headers.zip
+  cassie.updateStore(id, zip, property, newVal, (err, data) => {
     if (err) {
       console.log(err);
       res.status(404).end();
@@ -119,7 +122,8 @@ app.put('/api/Bag/store', (req, res) => {
 //delete
 app.delete('/api/Bag/product', (req, res) => {
   let id = req.headers.id;
-  postgres.deleteProduct(id, (err, data) => {
+  let name = req.headers.name;
+  postgres.deleteProduct(id, name, (err, data) => {
     if (err) {
       console.log(err);
       res.status(404).end();
@@ -131,7 +135,8 @@ app.delete('/api/Bag/product', (req, res) => {
 });
 app.delete('/api/Bag/store', (req, res) => {
   let id = req.headers.id;
-  postgres.deleteStore(id, (err, data) => {
+  let zip = req.headers.zip
+  postgres.deleteStore(id, zip, (err, data) => {
     if (err) {
       console.log(err);
       res.status(404).end();

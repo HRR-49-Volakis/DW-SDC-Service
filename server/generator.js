@@ -2,7 +2,7 @@ const faker = require('faker');
 
 const genProducts = () => {
   let products = [];
-  for (var i = 0; i < 1000; i++) {
+  for (var i = 0; i < 10; i++) {
     var product = {};
     product.name = faker.commerce.product();
     product.description = faker.commerce.productAdjective();
@@ -15,7 +15,7 @@ const genProducts = () => {
 
 const genStores = () => {
   let stores = [];
-  for (var i = 0; i < 1000; i++) {
+  for (var i = 0; i < 10; i++) {
     var store = {};
     store.name = faker.address.county();
     store.address = faker.address.streetAddress();
