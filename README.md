@@ -18,12 +18,28 @@
 ## Usage
 
 > instantiate DB:
->mySQL: from root, run mysql -u root < server/database/schema.sql (it may be necessary to edit connection settings in mySql.js)
+>mySQL: from root of repo, run mysql -u root < server/database/schema.sql (it may be necessary to edit connection settings in mySql.js)
 
 Postgres: from within shell:
 > \i /Users/dw/SDC/Add-To-Bag-Frans/server/database/schema.sql
 
-> Seed DB with sample data: from root, npm run seed (it may be necessary to edit connection settings in this file as well)
+Cassandra:
+>cqlsh -f /Users/dw/SDC/Add-To-Bag-Frans/server/database/schema.cql
+
+
+> Seed DB with sample data: from root of repo, npm run seed (it may be necessary to edit connection settings in this file as well)
+
+Seed postgres with 10 million sample records:
+>From root of repo, `npm run gen` `npm run loadPG`
+
+Seed Cassandra with 10 million sample records:
+>from root of repo, `npm run genCassie`
+> from within keyspace in shell, once .csvs have been generated:
+>seed products:
+> `COPY products (id, name, description, price, review) FROM '/Users/dw/SDC/Add-To-Bag-Frans/server/data/productData.csv' WITH DELIMITER=',' AND HEADER=TRUE;`
+>seed stores:
+>`COPY stores (id, name, address, zipcode, stock) FROM '/Users/dw/SDC/Add-To-Bag-Frans/server/data/storeData.csv' WITH DELIMITER=',' AND HEADER=TRUE;`
+
 
 > API:
 

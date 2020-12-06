@@ -4,7 +4,7 @@ WITH replication = {'class':'NetworkTopologyStrategy', 'datacenter1' : 1};
 USE ikea;
 
 CREATE TABLE Products (
-  id timestamp,
+  id int,
   name text,
   description text,
   price float,
@@ -13,7 +13,7 @@ CREATE TABLE Products (
 );
 
 CREATE TABLE Stores (
-  id timestamp,
+  id int,
   name text,
   address text,
   zipcode int,
@@ -22,7 +22,7 @@ CREATE TABLE Stores (
 );
 
 CREATE TABLE Inventory (
-  id timestamp,
+  id int,
   stock int,
   StoresID int,
   ProductID int,

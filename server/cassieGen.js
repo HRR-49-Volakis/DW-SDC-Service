@@ -4,8 +4,9 @@ const fs = require('fs');
 
 const genProducts = () => {
   let products = [];
-  for (var i = 0; i < 1000; i++) {
+  for (var i = 0; i < 10000000; i++) {
     var product = {};
+    product.id = i + 1;
     product.name = faker.commerce.product();
     product.description = faker.commerce.productAdjective();
     product.price = Number.parseInt(faker.commerce.price());
@@ -17,8 +18,9 @@ const genProducts = () => {
 
 const genStores = () => {
   let stores = [];
-  for (var i = 0; i < 1000; i++) {
+  for (var i = 0; i < 10000000; i++) {
     var store = {};
+    store.id = i + 1;
     store.name = faker.address.county();
     store.address = faker.address.streetAddress();
     store.zipcode = Number.parseInt(faker.address.zipCode().slice(0,5));
@@ -28,20 +30,20 @@ const genStores = () => {
   return stores;
 }
 
-let products = genProducts();
+// let products = genProducts();
 let stores = genStores();
-console.log('records generated for products: ', products.length);
+// console.log('records generated for products: ', products.length);
 console.log('records generated for stores: ', stores.length)
 
 const writeProductHeader = () => {
   const productStream = fs.createWriteStream(`${__dirname}/data/productData.csv`);
-  productStream.write('name,description,price,review\n');
+  productStream.write('id,name,description,price,review\n');
 };
 
 const writeProducts = () => {
   const productStream = fs.createWriteStream(`${__dirname}/data/productData.csv`, {flags: 'a'});
   for (let product of products) {
-    productStream.write(`${product.name},${product.description},${product.price},${product.review}\n`);
+    productStream.write(`${product.id},${product.name},${product.description},${product.price},${product.review}\n`);
   }
 }
 
@@ -53,13 +55,13 @@ const makeProductCSV = () => {
 
 const writeStoresHeader = () => {
   const storeStream = fs.createWriteStream(`${__dirname}/data/storeData.csv`);
-  storeStream.write('name,address,zipcode,stock\n');
+  storeStream.write('id,name,address,zipcode,stock\n');
 }
 
 const writeStores = () => {
   const storeStream = fs.createWriteStream(`${__dirname}/data/storeData.csv`, {flags: 'a'});
   for (let store of stores) {
-    storeStream.write(`${store.name},${store.address},${store.zipcode},${store.stock}\n`);
+    storeStream.write(`${store.id},${store.name},${store.address},${store.zipcode},${store.stock}\n`);
   }
 }
 
@@ -68,7 +70,7 @@ const makeStoreCSV = () => {
   writeStores();
 }
 
-makeProductCSV();
+// makeProductCSV();
 makeStoreCSV();
 
 module.exports = {

@@ -1,5 +1,4 @@
 const { Pool, Client } = require('pg');
-const postgres = require('./database/pgIndex.js');
 const connectionString = `postgres://dw:sweetbbj@localhost:5432/ikea`;
 const pool = new Pool({
   connectionString
@@ -52,36 +51,6 @@ seedProducts();
 
 startTimer();
 seedStores();
-
-// const seedStores = new Promise( (resolve, reject) => {
-//   while( (store = stores.shift()) !== undefined ) {
-//     postgres.addStore(store.name, store.address, store.zipcode, store.stock, (err, data) => {
-//       if (err) {
-//         console.log(err)
-//       }
-//     });
-//   }
-//   // for (let store of stores) {
-//   //   postgres.addStore(store.name, store.address, store.zipcode, store.stock, (err, data) => {
-//   //     if (err) {
-//   //       console.log(err)
-//   //     }
-//   //   });
-//   //   stores.shift()
-//   // }
-//   resolve();
-// });
-
-// seedStores.then(() => {
-//   // endTimer();
-//   // console.log('Time to insert stores in seconds:', duration);
-// })
-
-
-
-// endTimer();
-// console.log('Time to insert products in seconds:', duration)
-
 
 client.end();
 pool.end().then(() => console.log('ended connection to pool'))
