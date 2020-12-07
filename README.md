@@ -27,10 +27,11 @@ Cassandra:
 >cqlsh -f /Users/dw/SDC/Add-To-Bag-Frans/server/database/schema.cql
 
 
-> Seed DB with sample data: from root of repo, npm run seed (it may be necessary to edit connection settings in this file as well)
-
+> Seed DB with sample data:
 Seed postgres with 10 million sample records:
->From root of repo, `npm run gen` `npm run loadPG`
+>From root of repo,
+>`npm run gen`
+>`npm run loadPG`
 
 Seed Cassandra with 10 million sample records:
 >from root of repo, `npm run genCassie`
