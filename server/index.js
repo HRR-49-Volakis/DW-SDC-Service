@@ -1,6 +1,7 @@
+require('newrelic');
 const express = require('express');
 const postgres = require('./database/pgIndex.js');
-const cassie = require('./database/cassIndex.js');
+// const cassie = require('./database/cassIndex.js');
 let app = express();
 app.use(express.static('client/dist'));
 
@@ -11,7 +12,7 @@ app.post('/api/Bag/product', (req, res) => {
   let price = req.headers.price;
   let review = req.headers.review;
   console.log('created new product')
-  cassie.addProduct(name, description, price, review, (err, data) => {
+  postgres.addProduct(name, description, price, review, (err, data) => {
     if (err) {
       console.log(err);
       res.status(404).end();
@@ -26,7 +27,7 @@ app.post('/api/Bag/store', (req, res) => {
   let address = req.headers.address;
   let zip = Number.parseInt(req.headers.zip);
   let stock = req.headers.stock;
-  cassie.addStore(name, address, zip, stock, (err, data) => {
+  postgres.addStore(name, address, zip, stock, (err, data) => {
     if (err) {
       console.log(err);
       res.status(404).end();
@@ -40,7 +41,7 @@ app.post('/api/Bag/store', (req, res) => {
 //read
 app.get('/api/Bag/product', function(req, res) {
   console.log('GET for product')
-  cassie.getProduct(req.headers.name, function(err, data) {
+  postgres.getProduct(req.headers.id, function(err, data) {
     if (err) {
       console.log(err);
       res.status(404).end();
@@ -52,7 +53,7 @@ app.get('/api/Bag/product', function(req, res) {
 
 app.get('/api/Bag/products', function(req, res) {
   console.log('GET for all products')
-  cassie.getProducts(function(err, data) {
+  postgres.getProducts(function(err, data) {
     if (err) {
       console.log(err);
       res.status(404).end();
@@ -64,7 +65,7 @@ app.get('/api/Bag/products', function(req, res) {
 
 app.get('/api/Bag/store', function(req, res) {
   console.log('GET for one store')
-  cassie.getStore(req.headers.zip, function(err, data) {
+  postgres.getStore(req.headers.zip, function(err, data) {
     if (err) {
       console.log(err);
       res.status(404).end();
@@ -76,7 +77,7 @@ app.get('/api/Bag/store', function(req, res) {
 
 app.get('/api/Bag/stores', function(req, res) {
   console.log('GET for all stores')
-  cassie.getStores(function(err, data) {
+  postgres.getStores(function(err, data) {
     if (err) {
       console.log(err);
       res.status(404).end();
@@ -93,7 +94,7 @@ app.put('/api/Bag/product', (req, res) => {
   let property = req.headers.property;
   let newVal = req.headers.newval;
   console.log(req.headers);
-  cassie.updateProduct(id, name, property, newVal, (err, data) => {
+  postgres.updateProduct(id, name, property, newVal, (err, data) => {
     if (err) {
       console.log(err);
       res.status(404).end();
@@ -108,7 +109,7 @@ app.put('/api/Bag/store', (req, res) => {
   let property = req.headers.property;
   let newVal = req.headers.newval;
   let zip = req.headers.zip
-  cassie.updateStore(id, zip, property, newVal, (err, data) => {
+  postgres.updateStore(id, zip, property, newVal, (err, data) => {
     if (err) {
       console.log(err);
       res.status(404).end();

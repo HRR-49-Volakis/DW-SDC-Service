@@ -20,7 +20,7 @@ class App extends React.Component {
     this.getStores();
   }
   getProduct() {
-    var id = '8';
+    var id = 8;
     var self = this;
     axios.get(port + 'product', {
       headers: {
