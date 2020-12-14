@@ -11,13 +11,13 @@ app.post('/api/Bag/product', (req, res) => {
   let description = req.headers.description;
   let price = req.headers.price;
   let review = req.headers.review;
-  console.log('created new product')
+  // console.log('created new product')
   postgres.addProduct(name, description, price, review, (err, data) => {
     if (err) {
       console.log(err);
       res.status(404).end();
     } else {
-      console.log('product added', data);
+      // console.log('product added', data);
       res.status(200).json(data.rows);
     }
   });
@@ -32,7 +32,7 @@ app.post('/api/Bag/store', (req, res) => {
       console.log(err);
       res.status(404).end();
     } else {
-      console.log('store added', data);
+      // console.log('store added', data);
       res.status(200).json(data.rows);
     }
   });
@@ -40,7 +40,7 @@ app.post('/api/Bag/store', (req, res) => {
 
 //read
 app.get('/api/Bag/product', function(req, res) {
-  console.log('GET for product')
+  // console.log('GET for product')
   postgres.getProduct(req.headers.id, function(err, data) {
     if (err) {
       console.log(err);
@@ -52,7 +52,7 @@ app.get('/api/Bag/product', function(req, res) {
 });
 
 app.get('/api/Bag/products', function(req, res) {
-  console.log('GET for all products')
+  // console.log('GET for all products')
   postgres.getProducts(function(err, data) {
     if (err) {
       console.log(err);
@@ -64,7 +64,7 @@ app.get('/api/Bag/products', function(req, res) {
 });
 
 app.get('/api/Bag/store', function(req, res) {
-  console.log('GET for one store')
+  // console.log('GET for one store')
   postgres.getStore(req.headers.zip, function(err, data) {
     if (err) {
       console.log(err);
@@ -76,7 +76,7 @@ app.get('/api/Bag/store', function(req, res) {
 });
 
 app.get('/api/Bag/stores', function(req, res) {
-  console.log('GET for all stores')
+  // console.log('GET for all stores')
   postgres.getStores(function(err, data) {
     if (err) {
       console.log(err);
@@ -93,13 +93,13 @@ app.put('/api/Bag/product', (req, res) => {
   let name = req.headers.name;
   let property = req.headers.property;
   let newVal = req.headers.newval;
-  console.log(req.headers);
+  // console.log(req.headers);
   postgres.updateProduct(id, name, property, newVal, (err, data) => {
     if (err) {
       console.log(err);
       res.status(404).end();
     } else {
-      console.log('product updated', data);
+      // console.log('product updated', data);
       res.status(200).json(data.rows);
     }
   });
@@ -114,7 +114,7 @@ app.put('/api/Bag/store', (req, res) => {
       console.log(err);
       res.status(404).end();
     } else {
-      console.log('store updated', data);
+      // console.log('store updated', data);
       res.status(200).json(data.rows);
     }
   });
@@ -129,7 +129,7 @@ app.delete('/api/Bag/product', (req, res) => {
       console.log(err);
       res.status(404).end();
     } else {
-      console.log('product deleted');
+      // console.log('product deleted');
       res.status(200).json(data.rows);
     }
   });
@@ -142,7 +142,7 @@ app.delete('/api/Bag/store', (req, res) => {
       console.log(err);
       res.status(404).end();
     } else {
-      console.log('store deleted');
+      // console.log('store deleted');
       res.status(200).json(data.rows);
     }
   });

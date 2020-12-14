@@ -36,8 +36,8 @@ var getProducts = function (callback) {
     callback(err,data);
   });
 };
-var getStore = function (zip, callback) {
-  pool.query("SELECT name, address, zipcode, stock FROM Stores WHERE zipcode='"+ zip + "';", function(err, data) {
+var getStore = async function (zip, callback) {
+  await pool.query("SELECT * from Stores WHERE zipcode='"+ zip + "'LIMIT 1;", function(err, data) {
     callback(err,data);
   });
 };

@@ -12,9 +12,11 @@
     "gen": "node --max-old-space-size=8192 server/generator.js",
     "genCassie": "node --max-old-space-size=8192 server/cassieGen.js",
     "loadPG": "node --max-old-space-size=8192 server/pgLoader.js",
-    "loadCassie": "node --max-old-space-size=8192 server/cassieLoader.js"
+    "loadCassie": "node --max-old-space-size=8192 server/cassieLoader.js",
+    "stress": "artillery run artillery-server.yaml"
   },
   "dependencies": {
+    "artillery": "^1.6.1",
     "axios": "^0.19.2",
     "body-parser": "^1.17.0",
     "cassandra-driver": "^4.6.1",
