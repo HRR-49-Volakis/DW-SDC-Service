@@ -20,6 +20,7 @@
     "axios": "^0.19.2",
     "body-parser": "^1.17.0",
     "cassandra-driver": "^4.6.1",
+    "cors": "^2.8.5",
     "csv-writer": "^1.6.0",
     "dotenv": "^8.2.0",
     "express": "^4.15.0",

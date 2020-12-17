@@ -2,8 +2,10 @@
 const express = require('express');
 const postgres = require('./database/pgIndex.js');
 const path = require('path');
+const cors = require('cors');
 // const cassie = require('./database/cassIndex.js');
 let app = express();
+app.use(cors());
 app.use(express.static('client/dist'));
 
 //get page
