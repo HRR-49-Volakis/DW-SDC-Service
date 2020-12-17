@@ -20,7 +20,14 @@ class App extends React.Component {
     this.getStores();
   }
   getProduct() {
-    var id = 8;
+    let id = window.location.pathname;
+     if (id.length > 1) {
+       id = id.split('');
+       id.shift();
+       id = Number.parseInt(id.join(''));
+     } else {
+        id = Math.floor(Math.random() * 10000000);
+     }
     var self = this;
     axios.get(port + 'product', {
       headers: {

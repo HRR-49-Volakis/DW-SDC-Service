@@ -1,10 +1,15 @@
-require('newrelic');
+//require('newrelic');
 const express = require('express');
 const postgres = require('./database/pgIndex.js');
+const path = require('path');
 // const cassie = require('./database/cassIndex.js');
 let app = express();
 app.use(express.static('client/dist'));
 
+//get page
+app.get('/:item_id', (req, res) => {
+  res.sendFile(`${path.resolve(__dirname, '../', 'client/dist')}/index.html`);
+});
 //create
 app.post('/api/Bag/product', (req, res) => {
   let name = req.headers.name;
@@ -146,6 +151,12 @@ app.delete('/api/Bag/store', (req, res) => {
       res.status(200).json(data.rows);
     }
   });
+});
+
+//loader.io
+app.get('/loaderio-e67b172af86cde3f37f3a1cd43d981b6', (req,res) => {
+  console.log(req);
+  res.status(200).send('loaderio-e67b172af86cde3f37f3a1cd43d981b6');
 });
 
 let port = 3001;
