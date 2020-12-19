@@ -5,7 +5,7 @@ const mysql = require('mysql');
 var connection = mysql.createConnection ({
   host: 'localhost',
   user: 'root',
-  password: 'password',
+  password: '',
   database: 'IKEA'
 });
 connection.connect(function(err) {
@@ -39,4 +39,6 @@ function seed () {
 //faker.commerce.product(), faker.commerce.productDescription(), faker.commerce.price()
 //faker.commerce.department(), faker.address.streetAddress(), faker.address.zipCode()
 seed();
+
+connection.end();
 module.exports.seed = seed;
