@@ -8,6 +8,12 @@ let app = express();
 app.use(cors());
 app.use(express.static('client/dist'));
 
+//loaderio
+app.get('/loaderio-0eb12140f609901af747fb25ae3be196', (req,res) => {
+  console.log(req);
+  res.status(200).send('loaderio-0eb12140f609901af747fb25ae3be196');
+});
+
 //get page
 app.get('/:item_id', (req, res) => {
   res.sendFile(`${path.resolve(__dirname, '../', 'client/dist')}/index.html`);
@@ -155,11 +161,6 @@ app.delete('/api/Bag/store', (req, res) => {
   });
 });
 
-//loader.io
-app.get('/loaderio-e67b172af86cde3f37f3a1cd43d981b6', (req,res) => {
-  console.log(req);
-  res.status(200).send('loaderio-e67b172af86cde3f37f3a1cd43d981b6');
-});
 
 let port = 3001;
 app.listen(port, function() {
