@@ -1,48 +1,53 @@
-# Project Name
-
-> Project description
-
+# Djungel Add-to-Cart Services
+    Backend services for Djungel, a conceptual furnishings retailer. Database schema & API are provided for MySQL, PostgreSQL, & Cassandra. Usage section describes scripts to generate and seed sample data 
 ## Related Projects
-
-  - https://github.com/teamName/repo
-  - https://github.com/teamName/repo
-  - https://github.com/teamName/repo
-  - https://github.com/teamName/repo
+  - https://github.com/HRR-49-Volakis/ReviewsService
+  - https://github.com/HRR-49-Volakis/MainProduct
+  - https://github.com/HRR-49-Volakis/Alysa-Service
 
 ## Table of Contents
 
 1. [Usage](#Usage)
-1. [Requirements](#requirements)
-1. [Development](#development)
+2. [Requirements](#requirements)
+3. [Development](#development)
 
-## Usage
+## Usage ##
 
-> instantiate DB:
->mySQL: from root of repo, run mysql -u root < server/database/schema.sql (it may be necessary to edit connection settings in mySql.js)
+### instantiate DB: 
+>mySQL: from root of repo, run mysql -u root < server/database/schema.sql 
 
-Postgres: from within shell:
-> \i /Users/dw/SDC/Add-To-Bag-Frans/server/database/schema.sql
+Postgres: (from within shell):
+> \i ../DW-SDC-Service/server/database/schema.sql
 
 Cassandra:
->cqlsh -f /Users/dw/SDC/Add-To-Bag-Frans/server/database/schema.cql
+>cqlsh -f ../DW-SDC-Service/server/database/schema.cql
 
-
-> Seed DB with sample data:
-Seed postgres with 10 million sample records:
+### Seed DB :
+Seed postgres::
 >From root of repo,
 >`npm run gen`
 >`npm run loadPG`
 
-Seed Cassandra with 10 million sample records:
+Seed Cassandra:
 >from root of repo, `npm run genCassie`
-> from within keyspace in shell, once .csvs have been generated:
->seed products:
+from within keyspace in shell, once .csvs have been generated:
+seed products:
 > `COPY products (id, name, description, price, review) FROM '/Users/dw/SDC/Add-To-Bag-Frans/server/data/productData.csv' WITH DELIMITER=',' AND HEADER=TRUE;`
->seed stores:
+seed stores:
 >`COPY stores (id, name, address, zipcode, stock) FROM '/Users/dw/SDC/Add-To-Bag-Frans/server/data/storeData.csv' WITH DELIMITER=',' AND HEADER=TRUE;`
 
-
-> API:
+### Scripts
+    Development Client "react-dev": "webpack"
+    Development Server"server-dev": "node server/index.js"
+    Test Suite: "test": "jest"
+    Bundle: "build": "webpack --config webpack.config.js"
+    Generate sample data on CSV for postgres: "gen": "node --max-old-space-size=8192 server/generator.js"
+    For Cassandra: "genCassie": "node --max-old-space-size=8192 server/cassieGen.js"
+    Seed Postgres: "loadPG": "node --max-old-space-size=8192 server/pgLoader.js"
+    Seed Cassandra: "loadCassie": "node --max-old-space-size=8192 server/cassieLoader.js"
+    Local Stress Testing: "stress": "artillery run artillery-server.yaml
+    
+## API:
 
 1. //create
 >addProduct(name, description, price, review, callback)
