@@ -1,5 +1,5 @@
 # Djungel Add-to-Cart Services
-    Backend services for Djungel, a conceptual furnishings retailer. Database schema & API are provided for MySQL, PostgreSQL, & Cassandra. Usage section describes scripts to generate and seed sample data 
+Backend services for Djungel, a conceptual furnishings retailer. Database schema & API are provided for MySQL, PostgreSQL, & Cassandra. Usage section describes scripts to generate and seed sample data 
 ## Related Projects
   - https://github.com/HRR-49-Volakis/ReviewsService
   - https://github.com/HRR-49-Volakis/MainProduct
